@@ -4,6 +4,7 @@ package consul
 
 import (
 	"errors"
+	"fmt"
 	"sync"
 
 	"github.com/hashicorp/consul/watch"
@@ -53,6 +54,9 @@ func (gw *gRPCWatcher) watch() {
 	var olds interface{}
 	// 维护删除更新逻辑
 	plan.Handler = func(idx uint64, raw interface{}) {
+
+		fmt.Println("idx = ", idx, raw)
+
 		if raw == nil {
 			return
 		}
