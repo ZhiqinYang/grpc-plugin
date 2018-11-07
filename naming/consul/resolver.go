@@ -18,8 +18,8 @@ func (gr *gRPCResolver) Resolve(target string) (naming.Watcher, error) {
 	w := &gRPCWatcher{
 		addr:    gr.addr,
 		target:  target,
-		err:     make(chan error),
-		updates: make(chan []*naming.Update),
+		err:     make(chan error, 1),
+		updates: make(chan []*naming.Update, 1),
 		ttype:   gr.ttype,
 	}
 	return w, nil
